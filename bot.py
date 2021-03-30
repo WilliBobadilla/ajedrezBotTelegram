@@ -14,10 +14,13 @@ logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s
                     level=logging.INFO)
 
 logger = logging.getLogger(__name__)
-TOKEN = 'token'
-
-# Define a few command handlers. These usually take the two arguments update and
-# context. Error handlers also receive the raised TelegramError object in error.
+#TOKEN = 'token'
+try:
+    from token import TOKEN
+except:
+    print("Crear un archivo token.py y agregar dentro una varible TOKEN")
+    # Define a few command handlers. These usually take the two arguments update and
+    # context. Error handlers also receive the raised TelegramError object in error.
 
 
 def start(update, context):
@@ -64,7 +67,7 @@ def main():
     updater.start_webhook(listen="0.0.0.0",
                           port=int(PORT),
                           url_path=TOKEN)
-    updater.bot.setWebhook('https://yourherokuappname.herokuapp.com/' + TOKEN)
+    updater.bot.setWebhook('https://botteelgramajedrez.herokuapp.com/' + TOKEN)
 
     # Run the bot until you press Ctrl-C or the process receives SIGINT,
     # SIGTERM or SIGABRT. This should be used most of the time, since
